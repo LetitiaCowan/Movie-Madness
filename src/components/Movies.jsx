@@ -1,6 +1,6 @@
 import React, { forwardRef, useImperativeHandle } from "react";
 import axios from "axios";
-import { Link, useLoaderData, useLocation } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 const Movies = forwardRef(({ movies, setMovies }, ref) => {
   async function fetchMovies(s) {
