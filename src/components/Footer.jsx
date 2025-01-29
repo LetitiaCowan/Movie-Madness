@@ -90,14 +90,10 @@ const Footer = () => {
             <div className="space-y-4">
               <h3 className="text-lg font-semibold">Connect With Us</h3>
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-white">
-                </a>
-                <a href="#" className="text-gray-400 hover:text-white">
-                </a>
-                <a href="#" className="text-gray-400 hover:text-white">
-                </a>
-                <a href="#" className="text-gray-400 hover:text-white">
-                </a>
+                <a href="#" className="text-gray-400 hover:text-white"></a>
+                <a href="#" className="text-gray-400 hover:text-white"></a>
+                <a href="#" className="text-gray-400 hover:text-white"></a>
+                <a href="#" className="text-gray-400 hover:text-white"></a>
               </div>
             </div>
           </div>
