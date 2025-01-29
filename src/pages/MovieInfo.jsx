@@ -58,7 +58,7 @@ const MovieInfo = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Movie Poster */}
-          <div className="md:col-span-1">b
+          <div className="md:col-span-1">
             <img
               src={movieDetails.primaryImage}
               alt="Movie poster"
