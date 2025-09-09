@@ -3,6 +3,12 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Movies = forwardRef(({ movies, setMovies }, ref) => {
+  const [moviesToShow, setMoviesToShow] = React.useState(8);
+
+  const handleShowMore = () => {
+    setMoviesToShow(prev => prev + 4);
+  };
+
   const fetchPopularMovies = React.useCallback(async () => {
     const apiKey = '4e44d9029b1270a757cddc766a1bcb63';
     const popularUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`;
@@ -34,6 +40,11 @@ const Movies = forwardRef(({ movies, setMovies }, ref) => {
       fetchPopularMovies();
     }
   }, [movies.length, fetchPopularMovies]);
+
+  // Reset movies to show when movies change (e.g., new search)
+  React.useEffect(() => {
+    setMoviesToShow(8);
+  }, [movies]);
 
   async function fetchMovies(s) {
     // Using TMDb API - more reliable and comprehensive
@@ -84,7 +95,7 @@ const Movies = forwardRef(({ movies, setMovies }, ref) => {
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {movies && movies.length > 0 ? (
-          movies.slice(0, 6).map((movie) => {
+          movies.slice(0, moviesToShow).map((movie) => {
             // Use TMDb ID directly - the movie details page will handle it
             const movieId = movie.id;
             const posterUrl = movie.poster_path 
@@ -123,6 +134,18 @@ const Movies = forwardRef(({ movies, setMovies }, ref) => {
           <p className="text-gray-400">No movies found</p>
         )}
       </div>
+      
+      {/* Show More Button */}
+      {movies && movies.length > moviesToShow && (
+        <div className="text-center mt-8">
+          <button
+            onClick={handleShowMore}
+            className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200 font-medium"
+          >
+            Show More Movies
+          </button>
+        </div>
+      )}
     </div>
   );
 });

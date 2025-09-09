@@ -88,13 +88,41 @@ const Footer = () => {
               </ul>
             </div>
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Connect With Us</h3>
-              <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-white"></a>
-                <a href="#" className="text-gray-400 hover:text-white"></a>
-                <a href="#" className="text-gray-400 hover:text-white"></a>
-                <a href="#" className="text-gray-400 hover:text-white"></a>
-              </div>
+              <h3 className="text-lg font-semibold">Conect with us</h3>
+              <ul className="space-y-2">
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-400 hover:text-white text-sm"
+                  >
+                    Twitter
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-400 hover:text-white text-sm"
+                  >
+                   Instagram
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-400 hover:text-white text-sm"
+                  >
+                    TikTok
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-400 hover:text-white text-sm"
+                  >
+                    Facebook
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
           <div className="border-t border-gray-700 mt-8 pt-8 text-center">
