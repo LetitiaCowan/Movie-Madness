@@ -16,27 +16,44 @@ const Header = ({ movies, setMovies, searchValue, setSearchValue }) => {
     }
   };
 
+
   useEffect(() => {
     console.log(movies);
   }, [movies]);
 
   const filterMovies = (filter) => {
+    if (!filter) return;
+    
     const sortedMovies = [...movies];
 
     switch (filter) {
       case "release_date":
-        sortedMovies.sort((a, b) => (a.startYear || 0) - (b.startYear || 0));
+        sortedMovies.sort((a, b) => {
+          const yearA = a.release_date ? new Date(a.release_date).getFullYear() : 0;
+          const yearB = b.release_date ? new Date(b.release_date).getFullYear() : 0;
+          return yearA - yearB;
+        });
         break;
       case "rating":
-        sortedMovies.sort((a, b) => (b.averageRating || 0) - (a.averageRating || 0));
+        sortedMovies.sort((a, b) => {
+          const ratingA = parseFloat(a.vote_average) || 0;
+          const ratingB = parseFloat(b.vote_average) || 0;
+          return ratingB - ratingA;
+        });
         break;
       case "title":
-        sortedMovies.sort((a, b) =>
-          a.primaryTitle.localeCompare(b.primaryTitle)
-        );
+        sortedMovies.sort((a, b) => {
+          const titleA = a.title || a.primaryTitle || "";
+          const titleB = b.title || b.primaryTitle || "";
+          return titleA.localeCompare(titleB);
+        });
         break;
       case "popularity":
-        sortedMovies.sort((a, b) => (b.numVotes || 0) - (a.numVotes || 0));
+        sortedMovies.sort((a, b) => {
+          const popularityA = parseFloat(a.popularity) || 0;
+          const popularityB = parseFloat(b.popularity) || 0;
+          return popularityB - popularityA;
+        });
         break;
       default:
         return;
@@ -48,9 +65,12 @@ const Header = ({ movies, setMovies, searchValue, setSearchValue }) => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-8">
+        <h1 className="text-4xl font-bold mb-4">
           Find Your Next Movie Adventure!
         </h1>
+        <p className="text-gray-400 mb-8">
+          Discover popular movies or search for your favorites
+        </p>
         <div className="flex items-center space-x-4 max-w-lg mx-auto">
           <input
             type="text"
@@ -78,6 +98,7 @@ const Header = ({ movies, setMovies, searchValue, setSearchValue }) => {
               'Search'
             )}
           </button>
+          
 
           <select
             onChange={(event) => filterMovies(event.target.value)}
